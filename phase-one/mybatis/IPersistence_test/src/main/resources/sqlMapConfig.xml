@@ -1,0 +1,8 @@
+<configuration>
+    <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+    <property name="user" value="root"/>
+    <property name="password" value=""/>
+    <property name="jdbcUrl" value="jdbc:mysql:///mybatis1"/>
+
+    <mapper resource = "mapper.xml"/>
+</configuration>
