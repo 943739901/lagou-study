@@ -1,0 +1,11 @@
+<mapper namespace="com.lpy.dao.IUserDao">
+
+    <select id="findAll" resultType="com.lpy.model.User">
+        select * from user
+    </select>
+
+    <select id="findByCondition" parameterType="com.lpy.model.User" resultType="com.lpy.model.User">
+        select * from user where id = #{id} and username = #{username}
+    </select>
+
+</mapper>

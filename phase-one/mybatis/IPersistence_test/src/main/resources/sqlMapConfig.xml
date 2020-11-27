@@ -5,4 +5,5 @@
     <property name="jdbcUrl" value="jdbc:mysql:///mybatis1"/>
 
     <mapper resource = "mapper.xml"/>
+    <mapper resource = "UserMapper.xml"/>
 </configuration>
