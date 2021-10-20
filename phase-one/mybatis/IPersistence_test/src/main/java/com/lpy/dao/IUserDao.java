@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IUserDao {
 
-    List<User> findAll();
+    List<User> findAll() throws Exception;
 
-    User findByCondition(User user);
+    User findByCondition(User user) throws Exception;
 }

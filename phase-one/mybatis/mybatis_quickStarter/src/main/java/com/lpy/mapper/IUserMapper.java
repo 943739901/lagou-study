@@ -11,4 +11,8 @@ import java.util.List;
 public interface IUserMapper {
 
     List<User> findAll();
+
+    List<User> findByCondition(User user);
+
+    List<User> findByIds(List<Integer> ids);
 }

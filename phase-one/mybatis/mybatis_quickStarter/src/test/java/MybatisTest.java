@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -18,12 +19,15 @@ import java.util.List;
 public class MybatisTest {
 
     SqlSession sqlSession = null;
+    IUserMapper iUserMapper = sqlSession.getMapper(IUserMapper.class);
 
     @Before
     public void init() throws IOException {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("sqlMapConfig.xml"));
         // 传入true参数 自动提交
         sqlSession = sqlSessionFactory.openSession(true);
+        sqlSession.close();
+        iUserMapper = sqlSession.getMapper(IUserMapper.class);
     }
 
     @Test
@@ -73,11 +77,27 @@ public class MybatisTest {
 
     @Test
     public void mapper() {
-        IUserMapper mapper = sqlSession.getMapper(IUserMapper.class);
-        System.out.println(mapper.findAll());
+        System.out.println(iUserMapper.findAll());
     }
 
-
+    @Test
+    public void dynamicCondition() {
+        User param = new User();
+        param.setId(1);
+        System.out.println(iUserMapper.findByCondition(param));
+        User param2 = new User();
+        param2.setUsername("lucy");
+        System.out.println(iUserMapper.findByCondition(param2));
+        User param3 = new User();
+        param3.setId(2);
+        param3.setUsername("li");
+        System.out.println(iUserMapper.findByCondition(param3));
+    }
+    
+    @Test
+    public void foreach() {
+        System.out.println(iUserMapper.findByIds(Arrays.asList(1,2)));
+    }
 
 
 

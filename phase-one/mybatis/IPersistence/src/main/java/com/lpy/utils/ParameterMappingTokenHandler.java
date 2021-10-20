@@ -30,5 +30,4 @@ public class ParameterMappingTokenHandler implements TokenHandler {
     public void setParameterMappings(List<ParameterMapping> parameterMappings) {
         this.parameterMappings = parameterMappings;
     }
-
 }

@@ -5,26 +5,26 @@
 
 <mapper namespace="userMapper">
 
-    <select id="findAll" resultType="com.lpy.model.User">
+    <select id="findAll" resultType="user">
         select * from user
     </select>
 
     <!-- 查询需设置resultType或resultMap 否则会报-->
     <!-- A query was run and no Result Maps were found for the Mapped Statement-->
-    <select id="findById" parameterType="int" resultType="com.lpy.model.User">
+    <select id="findById" parameterType="int" resultType="user">
         select * from user where id = #{id}
     </select>
 
-    <select id="findOneByCondition" resultType="com.lpy.model.User" parameterType="com.lpy.model.User">
+    <select id="findOneByCondition" resultType="user" parameterType="user">
         select * from user where username = #{username} and password = #{password}
     </select>
 
     <!-- insert想返回id值 需要配置useGeneratedKeys 和 keyProperty或keyColumn -->
-    <insert id="insertOne" parameterType="com.lpy.model.User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertOne" parameterType="user" useGeneratedKeys="true" keyProperty="id">
         insert into user values (#{id}, #{username}, #{password}, #{birthday})
     </insert>
 
-    <update id="updateOne" parameterType="com.lpy.model.User">
+    <update id="updateOne" parameterType="user">
         update user set birthday = #{birthday} where id = #{id}
     </update>
 

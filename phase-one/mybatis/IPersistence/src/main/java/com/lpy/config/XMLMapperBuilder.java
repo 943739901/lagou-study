@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 解析mapper.xml具体实现
  * @author lipengyu
  */
 public class XMLMapperBuilder {
@@ -22,6 +23,9 @@ public class XMLMapperBuilder {
         this.configuration = configuration;
     }
 
+    /**
+     * 解析mapper.xml
+     */
     public void parse(InputStream resourceAsStream) throws DocumentException, ClassNotFoundException {
         Document read = new SAXReader().read(resourceAsStream);
         Element rootElement = read.getRootElement();
@@ -34,22 +38,18 @@ public class XMLMapperBuilder {
             String parameterType = selectElement.attributeValue("parameterType");
             String resultType = selectElement.attributeValue("resultType");
             String sql = selectElement.getTextTrim();
-            Class<?> parameterTypeClass = null;
-            Class<?> reusltClassType = null;
-            if (parameterType != null) {
-                parameterTypeClass = getClassType(parameterType);
-            }
-            if (resultType != null) {
-                reusltClassType = getClassType(resultType);
-            }
-            mappedStatementMap.put(namespace + "." + id
-                    , new MappedStatement(id, parameterTypeClass, reusltClassType, sql));
-
+            // 获取参数类型
+            Class<?> parameterTypeClass = getClassType(parameterType);
+            // 获取返回结果类型
+            Class<?> reusltClassType = getClassType(resultType);
+            mappedStatementMap.put(namespace + "." + id, new MappedStatement(id, parameterTypeClass, reusltClassType, sql));
         }
     }
 
-    private Class<?> getClassType(String parameterType) throws ClassNotFoundException {
-        return Class.forName(parameterType);
+    private Class<?> getClassType(String classType) throws ClassNotFoundException {
+        if (classType != null) {
+            return Class.forName(classType);
+        }
+        return null;
     }
-
 }

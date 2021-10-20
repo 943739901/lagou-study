@@ -3,14 +3,24 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+    <properties resource="jdbc.properties" />
+    
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="com.lpy.model.User" alias="user"/>
+    </typeAliases>
+    
     <environments default="dev">
         <environment id="dev">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql:///mybatis1"/>
-                <property name="username" value="root"/>
-                <property name="password" value=""/>
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
             </dataSource>
         </environment>
     </environments>
@@ -19,4 +29,5 @@
         <mapper resource="UserMapper.xml"/>
         <mapper resource="NewUserMapper.xml"/>
     </mappers>
+
 </configuration>

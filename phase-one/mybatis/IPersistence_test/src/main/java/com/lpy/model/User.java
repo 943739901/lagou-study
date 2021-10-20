@@ -5,18 +5,18 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.management.relation.Role;
+import java.util.List;
+
 /**
+ * User实体类
  * @author lipengyu
  */
 @Getter
 @Setter
 @ToString
 public class User {
-    private Integer id;
+    private Long id;
 
     private String username;
-
-    private String password;
-
-    private String birthday;
 }

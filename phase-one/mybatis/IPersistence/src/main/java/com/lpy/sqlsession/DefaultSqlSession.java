@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
+ * SqlSession默认实现
  * @author lipengyu
  */
 public class DefaultSqlSession implements SqlSession {
@@ -33,11 +34,6 @@ public class DefaultSqlSession implements SqlSession {
             throw new RuntimeException("返回结果过多");
         }
         return (T) objects.get(0);
-    }
-
-    @Override
-    public void close(Configuration configuration) throws SQLException {
-        simpleExecutor.close(configuration);
     }
 
     @Override
